@@ -45,21 +45,25 @@ def main():
     for i in range(len(data)):
         print(f"{data[i]["name"]} : {data[i]["score"]}")
         time.sleep(1)
-    score = play()
-    for e in range(5):
-        if score > data[e]["score"]:
-            data.insert(e, {"name": name, "score": score})
-            data.pop()
-            break
-    data.sort(key=lambda data: data["score"], reverse=True)
-    writing(data)
-    for i in range(len(data)):
-        print(f"{data[i]["name"]} : {data[i]["score"]}")
-        time.sleep(1)
+    cont = input("Would you like to continue?: ").strip().lower()
+    if cont != "q":
+        score = play()
+        for e in range(5):
+            if score > data[e]["score"]:
+                data.insert(e, {"name": name, "score": score})
+                data.pop()
+                break
+        data.sort(key=lambda data: data["score"], reverse=True)
+        writing(data)
+        for i in range(len(data)):
+            print(f"{data[i]["name"]} : {data[i]["score"]}")
+            time.sleep(1)
+    return cont
 
 
 if __name__ == "__main__":
     yesno = "gfghcjcghcjhcj"
     while not yesno in "no":
-        main()
-        yesno = input("Would you like to play again? ").strip().lower()
+        cont = main()
+        if cont != "q":
+            yesno = input("Would you like to play again? ").strip().lower()
