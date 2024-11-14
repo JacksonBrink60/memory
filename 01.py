@@ -67,3 +67,5 @@ if __name__ == "__main__":
         cont = main()
         if cont != "q":
             yesno = input("Would you like to play again? ").strip().lower()
+        else:
+            break
